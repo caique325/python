@@ -45,3 +45,9 @@ def insere_aluno(self, aluno):
     else:
         print("excedeu a quantidade")
 
+def exibeSala(self):
+    n =1 
+    for Aluno in self.salaDeAula:
+        print(f'{n} -{Aluno.exibeSala()}')
+        n = n + 1
+
