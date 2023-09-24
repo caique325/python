@@ -16,21 +16,13 @@ class Aluno:
     
 
     def exibeAluno(self):
-        print(f"Aluno: {self.nome}")
-        print(f"RA: {self.ra}")
+        #print(f"Aluno: {self.nome}")
+        #print(f"RA: {self.ra}")
         #print(f,"Codigo do curso: {self.codigo_curso}");
         #print(f,"Entrada: {self.entrada}");
+        return f'Nome: {self.nome} RA: {self.ra}'
 
 
-
-
-
-
-
-
-if __name__ == '__main__':
-    aluno = Aluno('Caique',20222010)
-    aluno.exibeAluno()
 
 class Sala:
     """Classe sala: Representa uma sala do IFG"""
@@ -39,15 +31,32 @@ class Sala:
         self.maxAlunos = maxAlunos
         self.salaDeAula = []
 
-def insere_aluno(self, aluno):
-    if len(self.salaDeAula < self.maxAlunos):
-        self.salaDeAula.append(aluno)
-    else:
-        print("excedeu a quantidade")
+    def insere_aluno(self, aluno):
+        if len(self.salaDeAula) < self.maxAlunos:
+            self.salaDeAula.append(aluno)
+        else:
+            print("excedeu a quantidade")
 
-def exibeSala(self):
-    n =1 
-    for Aluno in self.salaDeAula:
-        print(f'{n} -{Aluno.exibeSala()}')
-        n = n + 1
+    def exibeSala(self):
+        n = 1 
+        for aluno in self.salaDeAula:
+            print(f'{n} - {aluno.exibeAluno()}')
+            n = n + 1
 
+
+
+
+if __name__== '__main__':
+    ifg = Sala('ifg',5)
+    aluno = Aluno('Caique Magalhaes',20222010000)
+    ifg.insere_aluno(aluno)
+    aluno = Aluno('Pablo Herrison',20222010000)
+    ifg.insere_aluno(aluno)
+    aluno = Aluno('Andre Fiusa',20222010000)
+    ifg.insere_aluno(aluno)
+    aluno = Aluno('Tiago Curtinhas',20222010000)
+    ifg.insere_aluno(aluno)
+    aluno = Aluno('Andre Ciclo',20222010000)
+    ifg.insere_aluno(aluno)
+
+    ifg.exibeSala()
