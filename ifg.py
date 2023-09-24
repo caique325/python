@@ -20,7 +20,7 @@ class Aluno:
         #print(f"RA: {self.ra}")
         #print(f,"Codigo do curso: {self.codigo_curso}");
         #print(f,"Entrada: {self.entrada}");
-        return f'Nome: {self.nome} RA: {self.ra}'
+        return f'Nome: {self.nome} \t RA: {self.ra}'
 
 
 
