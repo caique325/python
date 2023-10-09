@@ -1,57 +1,88 @@
+import calendar
+
 class Pessoa():
-    def __init__(self,nome,data_nascimento,cor):
+    def __init__(self,nome,data_nascimento,id):
         self.nome = nome
         self.data_nascimento =data_nascimento
-        self.cor = cor
+        self.id = id
+
+
         
-    def exibir(self):
+    def exibirAluno(self):
         print(f'Nome: {self.nome} \nData: {self.data_nascimento} \nCor: {self.cor}')
 
 
-if __name__ == '__main__':
-      
-    '''p1 = Pessoa('Caique','02/10/2022','Preta')
-    p1.exibir()
-    print('\n')
-    p2 = Pessoa('Pablo','07/01/2003','Branco')
-    p2.exibir()
-    print('\n')'''
-
 class Aluno(Pessoa):
-    def __init__(self,ra,cod_curso,ano_entrada,campus,periodo,nome,data_nascimento,cor):
+    def __init__(self,ra,campus,codigo_curso,ano_entrada,nome,data_nascimento,id,idade):
         self.ra = ra
-        self.cod_curso= cod_curso
         self.ano_entrada = ano_entrada
         self.campus=campus
-        self.periodo= periodo
-        super().__init__(nome,data_nascimento,cor)
+        self.codigo_curso = codigo_curso 
+        self.idade = idade
 
+
+        super().__init__(nome,data_nascimento,id)
     def exibirAluno(self):
-        print(f'Aluno: {self.nome}')
-        print(f'Nascimento: {self.data_nascimento} ')
-        print(f'RA: {self.ra}')
-        print(f'Cod: {self.cod_curso}')
-        print(f'Ano: {self.ano_entrada}')
-        print(f'Campus: {self.campus}')
-        print(f'Periodo: {self.periodo}')
-        print('\n')
+        return f'Nome: {self.nome} RA: {self.ra} '
+        
+        
+class Sala(Aluno):
+    def __init__(self,nomeSala,maxAlunos):
+        self.nomeSala = nomeSala
+        self.maxAlunos = maxAlunos
+        self.listaAluno = []
+        
+
+    def insereAluno(self,aluno):
+
+        if len(self.listaAluno) < self.maxAlunos and not aluno in self.listaAluno and aluno.idade >16:
+            self.listaAluno.append(aluno)
+        
+
+    def removeAluno(self,aluno):
+        self.listaAluno.pop(aluno)
+
+    def exibirSala(self):
+        n = 1
+        for aluno in self.listaAluno:
+            print(f'{n} - {aluno.exibirAluno()}')
+            n = n + 1
 
 
 
 if __name__ == '__main__':
- 
-    n = 0
-    while (n == 0):
-        ra = input('Coloque Seu Ra: ')
-        ano_entrada = input('Coloque Sua Data de Entrada: ')
-        cod_curso = input('Coloque Seu Codigo: ')
-        campus = input('Qual Seu Campus: ')
-        nome = input('Coloque Seu nome: ')
-        data = input('Coloque sua Data: ')
-        cor = input('Coloque sua Cor: ')
-        periodo = input('Coloque seu periodo: ')
-        print('\n')
-
-        x = Aluno( ra ,cod_curso,ano_entrada,campus,3,nome,data,cor)   
-        x.exibirAluno()
-        n = input('Voce quer inserir mais? ')
+    nome=['','','','']
+    data_nascimento=['','','','']
+    idade=['','','','']
+    for i in range(3):
+        nome[i] = input(f'digite O Nome Do {i+1} Aluno: ')
+        data = int(input(f'Coloque Data de Nasicmento do {i+1} aluno: '))
+        mes = int(input(f'Coloque o mes de nascimento do {i+1} aluno: '))
+        ano = int(input(f'Coloque o ano de nascimento do {i+1} aluno: '))
+        while(data <= 0) or (data >= 32) or (mes <= 0) or (mes >= 13) or (ano > 2023):
+            print('Digite uma data valida: ')
+            data = int(input('Coloque sua Data de Nasicmento: '))
+            mes = int(input('Coloque o mes de nascimento: '))
+            ano = int(input('Coloque o ano de nascimento: '))
+        
+        idade[i] =  2023 - ano
+        data  = str(data)
+        mes  = str(mes)
+        ano  = str(ano)
+        
+        data_nascimento[i] = str(data  + '/' + mes  + '/' + ano)
+        print(data_nascimento[i])
+        
+    POO = Sala('POO',3)
+    estudante = Aluno(20222010,'IFG',20102015,2023,nome[0],data_nascimento[0],12345,idade[0])
+    POO.insereAluno(estudante)
+    estudante = Aluno(20222010,'IFG',20102015,2023,nome[1],data_nascimento[1],12345,idade[1])
+    POO.insereAluno(estudante)
+    estudante = Aluno(20222010,'IFG',20102015,2023,nome[2],data_nascimento[1],12345,idade[2])
+    POO.insereAluno(estudante)
+  
+    
+    #parametro 0 para remover o primeiro aluno da lista 
+    POO.removeAluno(0)
+    print('Exibindo Alunos da Sala')
+    POO.exibirSala()
